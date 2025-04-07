@@ -110,7 +110,7 @@ async def bancho_http_handler() -> Response:
 <b>packets handled ({len(packets)})</b>
 {new_line.join([f"{packet.name} ({packet.value})" for packet in packets])}
 
-<a href="https://github.com/crvmblr/bancho.py">Source code</a>
+<a href="https://github.com/twinkangelz/bancho.py">Source code</a>
 </body>
 </html>""",
     )
@@ -475,13 +475,13 @@ WELCOME_MSG = "\n".join(
 RESTRICTED_MSG = (
     "Your account has been restricted! "
     "While restricted, you will be unable to interact with other players "
-    "and your scores will only be visible to you. "
+    "and your scores will only be visible to you and staff. "
     "If you believe this is a mistake, or have waited longer than 3 months, "
     "you can appeal in our Discord."
 )
 
 WELCOME_NOTIFICATION = app.packets.notification(
-    f"Welcome back to {BASE_DOMAIN}!\nRunning bancho.py v{app.settings.VERSION}.",
+    f"If you ain't 22, I aint touching you. -Yuki, 2025",
 )
 
 OFFLINE_NOTIFICATION = app.packets.notification(
@@ -1108,6 +1108,7 @@ class SpectateFrames(BasePacket):
     async def handle(self, player: Player) -> None:
         # ANTICHEAT: TODO: perform validations on the parsed frame bundle
         # to ensure it's not being tamperated with or weaponized.
+        # This could improve our detection of timewarp.
 
         # NOTE: this is given a fastpath here for efficiency due to the
         # sheer rate of usage of these packets in spectator mode.
