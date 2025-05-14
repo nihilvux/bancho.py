@@ -235,7 +235,8 @@ async def log_strange_occurrence(obj: object) -> None:
     if app.settings.AUTOMATICALLY_REPORT_PROBLEMS:
         # automatically reporting problems to cmyui's server
         response = await http_client.post(
-            url="https://log.cmyui.xyz/",
+            url="placeholderdata",
+            # TODO: Point this to an actual server.
             headers={
                 "Bancho-Version": app.settings.VERSION,
                 "Bancho-Domain": app.settings.DOMAIN,
@@ -245,13 +246,13 @@ async def log_strange_occurrence(obj: object) -> None:
         if response.status_code == 200 and response.read() == b"ok":
             uploaded = True
             log(
-                "Logged strange occurrence to cmyui's server. "
+                "You've encountered something strange... This problem has been logged."
                 "Thank you for your participation! <3",
                 Ansi.LBLUE,
             )
         else:
             log(
-                f"Autoupload to cmyui's server failed (HTTP {response.status_code})",
+                f"Auto-upload to logging server failed (HTTP {response.status_code})",
                 Ansi.LRED,
             )
 
@@ -271,7 +272,7 @@ async def log_strange_occurrence(obj: object) -> None:
         )
         log(
             "It would be greatly appreciated if you could forward this to the "
-            "bancho.py development team. To do so, please email josh@akatsuki.gg",
+            "server's development team. To do so, please contact @crvmblr on discord.",
             Ansi.LYELLOW,
         )
 
