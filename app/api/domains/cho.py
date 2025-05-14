@@ -77,7 +77,7 @@ DISK_CHAT_LOG_FILE = ".data/logs/chat.log"
 
 BASE_DOMAIN = app.settings.DOMAIN
 
-# TODO: dear god
+# TODO: im not doing this sorry vx
 NOW_PLAYING_RGX = re.compile(
     r"^\x01ACTION is (?:playing|editing|watching|listening to) "
     rf"\[https://osu\.(?:{re.escape(BASE_DOMAIN)}|ppy\.sh)/beatmapsets/(?P<sid>\d{{1,10}})#/?(?:osu|taiko|fruits|mania)?/(?P<bid>\d{{1,10}})/? .+\]"
@@ -462,7 +462,7 @@ class StatsUpdateRequest(BasePacket):
 
 
 # Some messages to send on welcome/restricted/etc.
-# TODO: these should probably be moved to the config.
+# TODO: these should probably be moved to the config. ask vx if nessecary
 WELCOME_MSG = "\n".join(
     (
         f"Welcome to {BASE_DOMAIN}.",
@@ -741,6 +741,7 @@ async def handle_osu_login_request(
             "osu_token": "no",
             "response_body": app.packets.login_reply(
                 LoginFailureReason.AUTHENTICATION_FAILED,
+                app.packets.notification(f"{BASE_DOMAIN}: Insufficient privileges.") #TODO: test in prod
             ),
         }
 
@@ -789,6 +790,7 @@ async def handle_osu_login_request(
             # TODO: this user already has a registered hwid.
             # they may be multi-accounting; 
             # there may be some desirable behavior to implement here in the future.
+            # Try logging HWID sets, created accounts, and player patterns.
             ...
         else:
             # this player is not verified yet, this is their first
@@ -803,7 +805,7 @@ async def handle_osu_login_request(
                     "response_body": (
                         app.packets.notification(
                             "Please contact staff directly to create an account.",
-                        )
+                        ) # TODO: This user is a guarantueed multi-account. Implement monitoring.
                         + app.packets.login_reply(
                             LoginFailureReason.AUTHENTICATION_FAILED,
                         )
