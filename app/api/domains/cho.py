@@ -481,7 +481,7 @@ RESTRICTED_MSG = (
 )
 
 WELCOME_NOTIFICATION = app.packets.notification(
-    f"If you ain't 22, I aint touching you. -Yuki, 2025",
+    f"Welcome back! Memento Mori.",
 )
 
 OFFLINE_NOTIFICATION = app.packets.notification(
@@ -576,6 +576,7 @@ async def get_allowed_client_versions(osu_stream: OsuStream) -> set[date] | None
     osu_stream_str = osu_stream.value
     if osu_stream in (OsuStream.STABLE, OsuStream.BETA):
         osu_stream_str += "40"  # i wonder why this exists
+                                # TODO: Reverse the logic of whatever this is
 
     response = await services.http_client.get(
         OSU_API_V2_CHANGELOG_URL,
