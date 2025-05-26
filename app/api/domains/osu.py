@@ -449,7 +449,6 @@ async def osuSearchHandler(
     return Response("\n".join(ret).encode())
 
 
-# TODO: video support (needs db change) // (We're not doing this, right..?) -Crumble
 @router.get("/web/osu-search-set.php")
 async def osuSearchSetHandler(
     player: Player = Depends(authenticate_player_session(Query, "u", "h")),
@@ -479,7 +478,7 @@ async def osuSearchSetHandler(
         {"v": v},
     )
     if bmapset is None:
-        # TODO: get from osu!
+       # Remove todo, map is unsubmitted if can't be fetched
         return Response(b"")
 
     rating = 10.0  # TODO: real data
