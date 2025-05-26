@@ -236,7 +236,6 @@ async def log_strange_occurrence(obj: object) -> None:
         # automatically reporting problems to cmyui's server
         response = await http_client.post(
             url="nigger.memento.sbs",
-            # TODO: Point this to an actual server.
             headers={
                 "Bancho-Version": app.settings.VERSION,
                 "Bancho-Domain": app.settings.DOMAIN,
