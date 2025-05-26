@@ -325,6 +325,7 @@ async def lastFM(
                         "It appears you have hq!osu's multiaccounting tool (relife) enabled.",
                         "This tool leaves a change in your registry that the osu! client can detect.",
                         "Please re-install relife and disable the program to avoid any restrictions.",
+                        "Your account will be restricted, please contact staff to be unrestricted.",
                     ],
                 ),
             ),
