@@ -462,7 +462,6 @@ class StatsUpdateRequest(BasePacket):
 
 
 # Some messages to send on welcome/restricted/etc.
-# TODO: these should probably be moved to the config. ask vx if nessecary
 WELCOME_MSG = "\n".join(
     (
         f"Welcome to {BASE_DOMAIN}.",
